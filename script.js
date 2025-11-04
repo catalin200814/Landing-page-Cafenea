@@ -22,3 +22,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('messageForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            
+            const formData = new FormData(this);
+            const name = this.querySelector('input[type="text"]').value;
+            
+            alert(`Mulțumim, ${name}! Mesajul tău a fost trimis. Te vom contacta în curând.`);
+            this.reset();
+        });
+    }
+});
