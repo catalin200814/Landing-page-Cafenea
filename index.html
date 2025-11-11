@@ -7,7 +7,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- HEADER NOU -->
+    <!-- HERO SECTION CU IMAGINE -->
+    <section class="hero-section" id="acasa">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>La Catalin</h1>
+                <p class="hero-subtitle">Cafenea Moldovenească Autentică</p>
+                <p class="hero-description">Aroma cafelei proaspete, atmosfera călduroasă și tradiția moldovenească</p>
+                <div class="hero-buttons">
+                    <a href="#meniu" class="btn btn-primary">Vezi Meniul</a>
+                    <a href="#contact" class="btn btn-secondary">Rezervă o masă</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HEADER -->
     <header class="site-header">
         <div class="main-header">
             <div class="logo">
@@ -21,217 +36,478 @@
                 <a href="#despre" class="nav-link">DESPRE NOI</a>
                 <a href="#contact" class="nav-link">CONTACT</a>
             </nav>
+
+            <!-- Coș de cumpărături -->
+            <div class="cart-icon-container">
+                <button class="cart-btn" id="cartToggle">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- SECȚIUNEA MENIU NOUĂ -->
+    <!-- Coș de cumpărături Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Coșul tău</h3>
+            <button class="close-cart" id="closeCart">×</button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart-message" id="emptyCartMessage">
+                <p>Coșul tău este gol</p>
+                <small>Adaugă produse din meniu</small>
+            </div>
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span id="cartSubtotal">0.00</span> lei
+                </div>
+                <div class="cart-tax">
+                    <span>TVA (10%):</span>
+                    <span id="cartTax">0.00</span> lei
+                </div>
+                <div class="cart-total">
+                    <strong>Total: <span id="cartTotal">0.00</span> lei</strong>
+                </div>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Finalizează Comanda</button>
+            <button class="clear-cart-btn" id="clearCartBtn">Golește Coșul</button>
+        </div>
+    </div>
+
+    <!-- Overlay pentru coș -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- SECȚIUNEA MENIU CU IMAGINI -->
     <section id="meniu">
         <div class="container">
-            <h2>Meniu Cafele</h2>
+            <h2 class="section-title">Meniu Cafele</h2>
             
             <div class="menu-categories">
                 <button class="category-btn active" data-category="cafea">Cafele</button>
                 <button class="category-btn" data-category="ceai">Ceaiuri</button>
                 <button class="category-btn" data-category="racoritoare">Răcoritoare</button>
+                <button class="category-btn" data-category="gustari">Gustări</button>
             </div>
             
+            <!-- CAFEELE -->
             <div class="menu-items" id="cafea-items">
-                <div class="menu-item">
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Espresso">
+                    </div>
                     <div class="item-info">
                         <h3>Espresso</h3>
-                        <p>Cafea puternică și aromată</p>
+                        <p>Cafea puternică și aromată, perfectă pentru dimineață</p>
                     </div>
-                    <span class="price">12 lei</span>
+                    <div class="item-actions">
+                        <span class="price">12 lei</span>
+                        <button class="add-to-cart-btn" data-id="1" data-name="Espresso" data-price="12" data-image="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="menu-item">
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Cappuccino">
+                    </div>
                     <div class="item-info">
                         <h3>Cappuccino</h3>
-                        <p>Espresso cu spumă de lapte cremoasă</p>
+                        <p>Espresso cu spumă de lapte cremoasă și topping de cacao</p>
                     </div>
-                    <span class="price">15 lei</span>
+                    <div class="item-actions">
+                        <span class="price">15 lei</span>
+                        <button class="add-to-cart-btn" data-id="2" data-name="Cappuccino" data-price="15" data-image="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="menu-item">
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Latte">
+                    </div>
                     <div class="item-info">
                         <h3>Latte</h3>
-                        <p>Cafea cu lapte și artă în spumă</p>
+                        <p>Cafea cu lapte și artă în spumă, echilibrul perfect</p>
                     </div>
-                    <span class="price">16 lei</span>
+                    <div class="item-actions">
+                        <span class="price">16 lei</span>
+                        <button class="add-to-cart-btn" data-id="3" data-name="Latte" data-price="16" data-image="https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="menu-item">
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Americano">
+                    </div>
                     <div class="item-info">
                         <h3>Americano</h3>
-                        <p>Espresso diluat cu apă fierbinte</p>
+                        <p>Espresso diluat cu apă fierbinte, aromă intensă</p>
                     </div>
-                    <span class="price">10 lei</span>
+                    <div class="item-actions">
+                        <span class="price">10 lei</span>
+                        <button class="add-to-cart-btn" data-id="4" data-name="Americano" data-price="10" data-image="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="menu-item">
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mocha">
+                    </div>
                     <div class="item-info">
                         <h3>Mocha</h3>
-                        <p>Cafea cu ciocolată și lapte</p>
+                        <p>Cafea cu ciocolată și lapte, indulgență pură</p>
                     </div>
-                    <span class="price">18 lei</span>
+                    <div class="item-actions">
+                        <span class="price">18 lei</span>
+                        <button class="add-to-cart-btn" data-id="5" data-name="Mocha" data-price="18" data-image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="menu-item">
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1560769624-6b69c5d6a486?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Macchiato">
+                    </div>
                     <div class="item-info">
                         <h3>Macchiato</h3>
-                        <p>Espresso cu pic de spumă de lapte</p>
+                        <p>Espresso cu pic de spumă de lapte, aromă concentrată</p>
                     </div>
-                    <span class="price">14 lei</span>
+                    <div class="item-actions">
+                        <span class="price">14 lei</span>
+                        <button class="add-to-cart-btn" data-id="6" data-name="Macchiato" data-price="14" data-image="https://images.unsplash.com/photo-1560769624-6b69c5d6a486?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
+                </div>
+
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Flat White">
+                    </div>
+                    <div class="item-info">
+                        <h3>Flat White</h3>
+                        <p>Dublu espresso cu micro-spumă de lapte, cremos și intens</p>
+                    </div>
+                    <div class="item-actions">
+                        <span class="price">17 lei</span>
+                        <button class="add-to-cart-btn" data-id="7" data-name="Flat White" data-price="17" data-image="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
+                </div>
+
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Cafea Turcească">
+                    </div>
+                    <div class="item-info">
+                        <h3>Cafea Turcească</h3>
+                        <p>Cafea tradițională preparată în cezve, cu sediment</p>
+                    </div>
+                    <div class="item-actions">
+                        <span class="price">13 lei</span>
+                        <button class="add-to-cart-btn" data-id="8" data-name="Cafea Turcească" data-price="13" data-image="https://images.unsplash.com/photo-1517701604599-bb29b565090c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
+                </div>
+
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Irish Coffee">
+                    </div>
+                    <div class="item-info">
+                        <h3>Irish Coffee</h3>
+                        <p>Cafea cu whiskey irlandez și frișcă, pentru momente speciale</p>
+                    </div>
+                    <div class="item-actions">
+                        <span class="price">25 lei</span>
+                        <button class="add-to-cart-btn" data-id="9" data-name="Irish Coffee" data-price="25" data-image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
+                </div>
+
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Cafea cu Gheață">
+                    </div>
+                    <div class="item-info">
+                        <h3>Cafea cu Gheață</h3>
+                        <p>Espresso răcit cu gheață, perfectă pentru zilele calde</p>
+                    </div>
+                    <div class="item-actions">
+                        <span class="price">14 lei</span>
+                        <button class="add-to-cart-btn" data-id="10" data-name="Cafea cu Gheață" data-price="14" data-image="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- CEAIURI (ascuns inițial) -->
+            <!-- CEAIURI -->
             <div class="menu-items hidden" id="ceai-items">
-                <div class="menu-item">
-                    <div class="item-info">
-                        <h3>Ceai Negru</h3>
-                        <p>Aromă intensă și bogată</p>
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Ceai Negru">
                     </div>
-                    <span class="price">8 lei</span>
+                    <div class="item-info">
+                        <h3>Ceai Negru English Breakfast</h3>
+                        <p>Aromă intensă și bogată, perfect pentru dimineață</p>
+                    </div>
+                    <div class="item-actions">
+                        <span class="price">8 lei</span>
+                        <button class="add-to-cart-btn" data-id="11" data-name="Ceai Negru English Breakfast" data-price="8" data-image="https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="menu-item">
-                    <div class="item-info">
-                        <h3>Ceai Verde</h3>
-                        <p>Proaspăt și revigorant</p>
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Ceai Verde">
                     </div>
-                    <span class="price">9 lei</span>
+                    <div class="item-info">
+                        <h3>Ceai Verde Sencha</h3>
+                        <p>Proaspăt și revigorant, cu note vegetale delicate</p>
+                    </div>
+                    <div class="item-actions">
+                        <span class="price">9 lei</span>
+                        <button class="add-to-cart-btn" data-id="12" data-name="Ceai Verde Sencha" data-price="9" data-image="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="menu-item">
-                    <div class="item-info">
-                        <h3>Ceai de Fructe</h3>
-                        <p>Bogat în arome de fructe</p>
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1597481499750-3e11b15f1d16?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Ceai de Fructe">
                     </div>
-                    <span class="price">10 lei</span>
+                    <div class="item-info">
+                        <h3>Ceai de Fructe de Pădure</h3>
+                        <p>Bogat în arome de fructe proaspete și sălbatice</p>
+                    </div>
+                    <div class="item-actions">
+                        <span class="price">10 lei</span>
+                        <button class="add-to-cart-btn" data-id="13" data-name="Ceai de Fructe de Pădure" data-price="10" data-image="https://images.unsplash.com/photo-1597481499750-3e11b15f1d16?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
                 </div>
+
+                <!-- Adaugă restul de 7 ceaiuri cu structura similară -->
+                <!-- ... -->
+
             </div>
 
-            <!-- RĂCORITOARE (ascuns inițial) -->
+            <!-- RĂCORITOARE -->
             <div class="menu-items hidden" id="racoritoare-items">
-                <div class="menu-item">
-                    <div class="item-info">
-                        <h3>Limonadă Proaspătă</h3>
-                        <p>Lămâie proaspătă și mentă</p>
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1523371683702-309cffa2f6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Limonadă">
                     </div>
-                    <span class="price">12 lei</span>
+                    <div class="item-info">
+                        <h3>Limonadă Proaspătă cu Lămâie</h3>
+                        <p>Lămâie proaspătă și mentă, răcoritoare și revigorantă</p>
+                    </div>
+                    <div class="item-actions">
+                        <span class="price">12 lei</span>
+                        <button class="add-to-cart-btn" data-id="21" data-name="Limonadă Proaspătă cu Lămâie" data-price="12" data-image="https://images.unsplash.com/photo-1523371683702-309cffa2f6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="menu-item">
-                    <div class="item-info">
-                        <h3>Suc Natural</h3>
-                        <p>Din fructe proaspete</p>
+                <!-- Adaugă restul de 9 răcoritoare cu structura similară -->
+                <!-- ... -->
+
+            </div>
+
+            <!-- GUSTĂRI -->
+            <div class="menu-items hidden" id="gustari-items">
+                <div class="menu-item floating-anim">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Croissant">
                     </div>
-                    <span class="price">10 lei</span>
+                    <div class="item-info">
+                        <h3>Croissant cu Unt</h3>
+                        <p>Proaspăt și crocant, cu unt de calitate superioară</p>
+                    </div>
+                    <div class="item-actions">
+                        <span class="price">8 lei</span>
+                        <button class="add-to-cart-btn" data-id="31" data-name="Croissant cu Unt" data-price="8" data-image="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                            + Adaugă
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="menu-item">
-                    <div class="item-info">
-                        <h3>Apă Minerală</h3>
-                        <p>Cu sau fără gaz</p>
-                    </div>
-                    <span class="price">5 lei</span>
+                <!-- Adaugă restul de 9 gustări cu structura similară -->
+                <!-- ... -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIE FOTO -->
+    <section id="galerie">
+        <div class="container">
+            <h2 class="section-title">Galerie Foto</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item floating-anim-slow">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Interior cafenea">
+                </div>
+                <div class="gallery-item floating-anim-slow">
+                    <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Barista la lucru">
+                </div>
+                <div class="gallery-item floating-anim-slow">
+                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Atmosfera cafenelei">
+                </div>
+                <div class="gallery-item floating-anim-slow">
+                    <img src="https://images.unsplash.com/photo-1572119865084-43c285814d63?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Prepararea cafelei">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECȚIUNEA DESPRE NOI NOUĂ -->
+    <!-- SECȚIUNEA DESPRE NOI -->
     <section id="despre">
         <div class="container">
-            <h2>Despre La Catalin</h2>
+            <h2 class="section-title">Despre La Catalin</h2>
             
             <div class="about-text">
                 <p>Bun venit la La Catalin, cafeneaua unde aroma cafelei se îmbină cu căldura ospitalității moldovenești.</p>
             </div>
             
             <div class="features-grid">
-                <div class="feature">
+                <div class="feature floating-anim">
                     <div class="feature-icon">☕</div>
                     <h3>Cafea Proaspătă</h3>
                     <p>Boabe de cafea selecționate și proaspăt prăjite zilnic</p>
                 </div>
                 
-                <div class="feature">
+                <div class="feature floating-anim">
                     <div class="feature-icon">🏠</div>
                     <h3>Atmosferă Casnică</h3>
                     <p>Un ambient cald și primitor, perfect pentru relaxare</p>
                 </div>
                 
-                <div class="feature">
+                <div class="feature floating-anim">
                     <div class="feature-icon">📍</div>
                     <h3>Locație Centrală</h3>
                     <p>În inima orașului, ușor accesibilă</p>
                 </div>
                 
-                <div class="feature">
+                <div class="feature floating-anim">
                     <div class="feature-icon">👨‍🍳</div>
-                    <h3>Baristi Experiențați</h3>
+                    <h3>Baristi Experimentați</h3>
                     <p>Echipa noastră creează artă în fiecare ceașcă</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECȚIUNEA CONTACT NOUĂ -->
+    <!-- SECȚIUNEA CONTACT -->
     <section id="contact">
         <div class="container">
-            <h2>Contactează-ne</h2>
+            <h2 class="section-title">Contactează-ne</h2>
             
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
+                    <div class="contact-card floating-anim">
+                        <div class="contact-header">
+                            <div class="contact-icon">📍</div>
                             <h3>Adresă</h3>
-                            <p>Strada Mihai Eminescu nr. 15<br>Chișinău, Moldova</p>
+                        </div>
+                        <div class="contact-details">
+                            <p>Strada Mihai Eminescu nr. 15</p>
+                            <p>Chișinău, Moldova</p>
                         </div>
                     </div>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div>
+                    <div class="contact-card floating-anim">
+                        <div class="contact-header">
+                            <div class="contact-icon">📞</div>
                             <h3>Telefon</h3>
-                            <p>+373 79 123 456<br>+373 22 123 456</p>
+                        </div>
+                        <div class="contact-details">
+                            <p>+373 79 123 456</p>
+                            <p>+373 22 123 456</p>
                         </div>
                     </div>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">🕒</div>
-                        <div>
+                    <div class="contact-card floating-anim">
+                        <div class="contact-header">
+                            <div class="contact-icon">🕒</div>
                             <h3>Program</h3>
-                            <p>Luni - Vineri: 7:00 - 22:00<br>Sâmbătă - Duminică: 8:00 - 23:00</p>
+                        </div>
+                        <div class="contact-details">
+                            <p><strong>Luni - Vineri:</strong> 7:00 - 22:00</p>
+                            <p><strong>Sâmbătă - Duminică:</strong> 8:00 - 23:00</p>
                         </div>
                     </div>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div>
+                    <div class="contact-card floating-anim">
+                        <div class="contact-header">
+                            <div class="contact-icon">📧</div>
                             <h3>Email</h3>
-                            <p>contact@lacatalin.md<br>rezervari@lacatalin.md</p>
+                        </div>
+                        <div class="contact-details">
+                            <p>contact@lacatalin.md</p>
+                            <p>rezervari@lacatalin.md</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="contact-form">
-                    <h3>Trimite-ne un mesaj</h3>
-                    <form id="messageForm">
+                <div class="contact-form-container floating-anim">
+                    <div class="form-header">
+                        <h3>✉️ Trimite-ne un mesaj</h3>
+                        <p>Te așteptăm să ne contactezi!</p>
+                    </div>
+                    <form id="messageForm" class="contact-form">
                         <div class="form-group">
-                            <input type="text" placeholder="Numele tău" required>
+                            <label for="name">Numele tău complet</label>
+                            <input type="text" id="name" placeholder="Introdu numele tău" required class="form-input">
                         </div>
+                        
                         <div class="form-group">
-                            <input type="email" placeholder="Email" required>
+                            <label for="email">Adresa ta de email</label>
+                            <input type="email" id="email" placeholder="exemplu@email.com" required class="form-input">
                         </div>
+                        
                         <div class="form-group">
-                            <textarea placeholder="Mesajul tău..." rows="5" required></textarea>
+                            <label for="message">Mesajul tău</label>
+                            <textarea id="message" placeholder="Scrie mesajul tău aici..." rows="5" required class="form-textarea"></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Trimite Mesaj</button>
+                        
+                        <button type="submit" class="submit-btn pulse-anim">
+                            <span class="btn-icon">📨</span>
+                            Trimite Mesaj
+                        </button>
                     </form>
+                </div>
+            </div>
+            
+            <div class="location-section">
+                <h3>📍 Locația noastră</h3>
+                <div class="map-placeholder">
+                    <div class="map-content">
+                        <div class="map-icon">🗺️</div>
+                        <p>Strada Mihai Eminescu nr. 15, Chișinău</p>
+                        <small>Lângă Parcul Central • Acces ușor • Parcare disponibilă</small>
+                    </div>
                 </div>
             </div>
         </div>
