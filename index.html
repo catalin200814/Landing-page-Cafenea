@@ -3,11 +3,1443 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Catalin - Cafenea Moldovenească</title>
-    <link rel="stylesheet" href="style.css">
+    <title>La Catalin - Cafenea Moldovenească Autentică</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === VARIABILE CSS === */
+        :root {
+            --coffee-dark: #5D4037;
+            --coffee-medium: #8D6E63;
+            --coffee-light: #D7CCC8;
+            --gold: #FFD700;
+            --gold-light: #FFECB3;
+            --cream: #FFF8E1;
+            --dark-text: #3E2723;
+            --light-text: #5D4037;
+            --shadow: 0 6px 20px rgba(0,0,0,0.1);
+            --shadow-strong: 0 10px 30px rgba(0,0,0,0.15);
+            --success: #2ecc71;
+            --error: #e74c3c;
+        }
+
+        /* === ANIMAȚII PERSONALIZATE AVANSATE === */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes floatReverse {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(-5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes slideInCart {
+            0% { transform: translateX(100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes cartItemAdd {
+            0% { transform: scale(0.8); opacity: 0; }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        @keyframes slideInNotification {
+            0% { transform: translateX(150%); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px var(--gold); }
+            50% { box-shadow: 0 0 20px var(--gold), 0 0 30px var(--gold-light); }
+            100% { box-shadow: 0 0 5px var(--gold); }
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 0; }
+            50% { transform: scale(1) rotate(180deg); opacity: 1; }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes confetti {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* === ELEMENTE SPECIALE ANIMATE === */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 215, 0, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 60%; left: 85%; animation-delay: 1s; animation: floatReverse 7s ease-in-out infinite; }
+        .floating-element:nth-child(3) { top: 80%; left: 15%; animation-delay: 2s; }
+        .floating-element:nth-child(4) { top: 30%; left: 80%; animation-delay: 3s; animation: floatReverse 8s ease-in-out infinite; }
+        .floating-element:nth-child(5) { top: 70%; left: 90%; animation-delay: 4s; }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: sparkle 2s linear infinite;
+            pointer-events: none;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background: var(--gold);
+            opacity: 0;
+            z-index: 1004;
+            pointer-events: none;
+        }
+
+        /* === RESET ȘI SETĂRI DE BAZĂ === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+            color: var(--dark-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* === UTILITARE === */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* === HERO SECTION CU ANIMAȚII AVANSATE === */
+        .hero-section {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                              url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2078&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(93, 64, 55, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            padding: 60px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1.5s ease-out, glow 3s ease-in-out infinite;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            color: #FFD700;
+            animation: fadeInUp 1s ease-out 0.2s both;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-content h1::after {
+            content: '|';
+            position: absolute;
+            right: -10px;
+            animation: blink 1s infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 300;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.6;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        /* === BUTOANE CU EFECTE SPECIALE === */
+        .btn {
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .btn:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FFD700 0%, #FFC400 100%);
+            color: #5D4037;
+            border: 2px solid #FFD700;
+            animation: pulse 2s infinite;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+            background: linear-gradient(135deg, #FFC400 0%, #FFD700 100%);
+            animation: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #FFD700;
+            border: 2px solid #FFD700;
+        }
+
+        .btn-secondary:hover {
+            background: #FFD700;
+            color: #5D4037;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        /* === HEADER CU ANIMAȚII === */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(93, 64, 55, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 3px solid var(--gold);
+            transition: all 0.3s ease;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo h1 {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 5px;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .tagline {
+            color: var(--cream);
+            font-style: italic;
+            animation: fadeInLeft 1s ease-out 0.2s both;
+        }
+
+        .main-navigation {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        /* === COȘ DE CUMPĂRĂTURI CU ANIMAȚII === */
+        .cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--coffee-dark);
+            color: var(--gold);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: var(--shadow-strong);
+            transition: all 0.3s ease;
+            animation: bounceIn 1s ease-out 1s both, float 4s ease-in-out infinite 2s;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1) rotate(10deg);
+            animation: pulse 1s infinite;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--error);
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1002;
+            transition: right 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+            animation: slideInCart 0.5s ease-out;
+        }
+
+        .cart-header {
+            background: var(--coffee-dark);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .close-cart:hover {
+            transform: rotate(90deg);
+        }
+
+        .cart-items {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            animation: cartItemAdd 0.5s ease-out;
+        }
+
+        .cart-item-info h4 {
+            margin: 0 0 5px 0;
+            color: var(--coffee-dark);
+        }
+
+        .cart-item-info p {
+            margin: 0;
+            color: var(--coffee-medium);
+            font-weight: bold;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            background: var(--coffee-light);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: var(--coffee-medium);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--error);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .remove-item:hover {
+            transform: scale(1.2);
+            animation: shake 0.5s;
+        }
+
+        .cart-summary {
+            padding: 20px;
+            border-top: 2px solid var(--coffee-light);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .cart-total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--coffee-dark);
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--coffee-dark) 0%, var(--coffee-medium) 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .checkout-btn:hover {
+            background: linear-gradient(135deg, var(--coffee-medium) 0%, var(--coffee-dark) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(93,64,55,0.4);
+        }
+
+        .checkout-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--coffee-medium);
+        }
+
+        .empty-cart i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--coffee-light);
+        }
+
+        /* === MENIU CU ANIMAȚII AVANSATE === */
+        #meniu {
+            padding: 100px 0;
+            background: white;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--coffee-dark);
+            margin-bottom: 50px;
+            position: relative;
+            font-weight: bold;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .section-title::after {
+            content: '☕';
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            background: var(--gold);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: float 3s ease-in-out infinite, glow 2s ease-in-out infinite;
+        }
+
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 15px 30px;
+            border: none;
+            background: var(--coffee-light);
+            color: var(--coffee-dark);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            transition: left 0.5s;
+        }
+
+        .category-btn:hover::before {
+            left: 100%;
+        }
+
+        .category-btn.active {
+            background: var(--coffee-dark);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(93,64,55,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+            padding: 0;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--gold);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+            position: relative;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,215,0,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-item:hover::before {
+            opacity: 1;
+        }
+
+        .menu-item:nth-child(1) { animation-delay: 0.1s; }
+        .menu-item:nth-child(2) { animation-delay: 0.2s; }
+        .menu-item:nth-child(3) { animation-delay: 0.3s; }
+        .menu-item:nth-child(4) { animation-delay: 0.4s; }
+        .menu-item:nth-child(5) { animation-delay: 0.5s; }
+        .menu-item:nth-child(6) { animation-delay: 0.6s; }
+
+        .menu-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-item:hover .item-image img {
+            transform: scale(1.1);
+        }
+
+        .item-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .item-info h3 {
+            color: var(--coffee-dark);
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .item-info p {
+            color: var(--light-text);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .price {
+            background: var(--coffee-dark);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 3px 10px rgba(93,64,55,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .add-to-cart {
+            background: var(--gold);
+            color: var(--coffee-dark);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-to-cart:hover {
+            background: #FFC400;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .add-to-cart:active {
+            transform: translateY(0);
+        }
+
+        /* === GALERIE CU ANIMAȚII === */
+        #galerie {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            height: 250px;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInUp 0.8s ease-out forwards;
+            position: relative;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(93,64,55,0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* === DESPRE NOI CU ANIMAȚII === */
+        #despre {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--coffee-dark) 0%, #6D4C41 100%);
+            color: white;
+            position: relative;
+        }
+
+        #despre::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gold);
+        }
+
+        .about-text p {
+            text-align: center;
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            line-height: 1.8;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            background: rgba(255,255,255,0.1);
+            padding: 40px 25px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .feature:hover::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .feature:nth-child(1) { animation-delay: 0.1s; }
+        .feature:nth-child(2) { animation-delay: 0.2s; }
+        .feature:nth-child(3) { animation-delay: 0.3s; }
+        .feature:nth-child(4) { animation-delay: 0.4s; }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+            border-color: var(--gold);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .feature h3 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .feature p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* === CONTACT CU ANIMAȚII === */
+        #contact {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            background: var(--cream);
+            padding: 25px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: fadeInRight 0.8s ease-out forwards;
+        }
+
+        .contact-item:nth-child(1) { animation-delay: 0.1s; }
+        .contact-item:nth-child(2) { animation-delay: 0.2s; }
+        .contact-item:nth-child(3) { animation-delay: 0.3s; }
+        .contact-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .contact-item:hover {
+            border-color: var(--gold);
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            background: var(--coffee-dark);
+            color: var(--gold);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        .contact-item h3 {
+            color: var(--coffee-dark);
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+        }
+
+        .contact-item p {
+            color: var(--light-text);
+            margin: 0;
+        }
+
+        .contact-form {
+            background: var(--cream);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--coffee-light);
+            opacity: 0;
+            transform: translateX(30px);
+            animation: fadeInLeft 0.8s ease-out 0.5s both;
+        }
+
+        .contact-form h3 {
+            color: var(--coffee-dark);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.6s; }
+        .form-group:nth-child(2) { animation-delay: 0.7s; }
+        .form-group:nth-child(3) { animation-delay: 0.8s; }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--coffee-light);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--coffee-dark);
+            box-shadow: 0 0 0 3px rgba(141,110,99,0.1);
+            transform: scale(1.02);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--coffee-dark) 0%, var(--coffee-medium) 100%);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out 0.9s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, var(--coffee-medium) 0%, var(--coffee-dark) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(93,64,55,0.3);
+        }
+
+        /* === NOTIFICĂRI === */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-strong);
+            z-index: 1003;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(150%);
+            transition: transform 0.5s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+            animation: slideInNotification 0.5s ease-out;
+        }
+
+        .notification.error {
+            background: var(--error);
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--coffee-dark);
+            color: var(--cream);
+            padding: 60px 0 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+        }
+
+        .footer-section h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            color: var(--cream);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            opacity: 0.7;
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .hero-description {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+            }
+            
+            .hero-overlay {
+                padding: 40px 20px;
+                margin: 20px;
+            }
+            
+            .main-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .main-navigation {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .cart-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-section {
+                height: 80vh;
+                background-attachment: scroll;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .feature {
+                padding: 30px 15px;
+            }
+            
+            .contact-form {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- HERO SECTION CU IMAGINE -->
+    <!-- ELEMENTE SPECIALE ANIMATE -->
+    <div class="floating-elements">
+        <div class="floating-element">☕</div>
+        <div class="floating-element">🥐</div>
+        <div class="floating-element">🍰</div>
+        <div class="floating-element">🧁</div>
+        <div class="floating-element">🍪</div>
+    </div>
+
+    <!-- COȘ DE CUMPĂRĂTURI -->
+    <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <div class="cart-count">0</div>
+    </div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Coșul tău</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-coffee"></i>
+                <p>Coșul tău este gol</p>
+                <p>Adaugă produse din meniu</p>
+            </div>
+        </div>
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">0.00 lei</span>
+            </div>
+            <div class="summary-row">
+                <span>TVA (10%):</span>
+                <span id="tax">0.00 lei</span>
+            </div>
+            <div class="summary-row cart-total">
+                <span>Total:</span>
+                <span id="total">0.00 lei</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn" disabled>Finalizează Comanda</button>
+        </div>
+    </div>
+
+    <!-- NOTIFICARE -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Produs adăugat în coș!</span>
+    </div>
+
+    <!-- HERO SECTION -->
     <section class="hero-section" id="acasa">
         <div class="hero-overlay">
             <div class="hero-content">
@@ -36,54 +1468,10 @@
                 <a href="#despre" class="nav-link">DESPRE NOI</a>
                 <a href="#contact" class="nav-link">CONTACT</a>
             </nav>
-
-            <!-- Coș de cumpărături -->
-            <div class="cart-icon-container">
-                <button class="cart-btn" id="cartToggle">
-                    <span class="cart-icon">🛒</span>
-                    <span class="cart-count" id="cartCount">0</span>
-                </button>
-            </div>
         </div>
     </header>
 
-    <!-- Coș de cumpărături Sidebar -->
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3>🛒 Coșul tău</h3>
-            <button class="close-cart" id="closeCart">×</button>
-        </div>
-        
-        <div class="cart-items" id="cartItems">
-            <div class="empty-cart-message" id="emptyCartMessage">
-                <p>Coșul tău este gol</p>
-                <small>Adaugă produse din meniu</small>
-            </div>
-        </div>
-        
-        <div class="cart-footer">
-            <div class="cart-summary">
-                <div class="cart-subtotal">
-                    <span>Subtotal:</span>
-                    <span id="cartSubtotal">0.00</span> lei
-                </div>
-                <div class="cart-tax">
-                    <span>TVA (10%):</span>
-                    <span id="cartTax">0.00</span> lei
-                </div>
-                <div class="cart-total">
-                    <strong>Total: <span id="cartTotal">0.00</span> lei</strong>
-                </div>
-            </div>
-            <button class="checkout-btn" id="checkoutBtn">Finalizează Comanda</button>
-            <button class="clear-cart-btn" id="clearCartBtn">Golește Coșul</button>
-        </div>
-    </div>
-
-    <!-- Overlay pentru coș -->
-    <div class="cart-overlay" id="cartOverlay"></div>
-
-    <!-- SECȚIUNEA MENIU CU IMAGINI -->
+    <!-- SECȚIUNEA MENIU -->
     <section id="meniu">
         <div class="container">
             <h2 class="section-title">Meniu Cafele</h2>
@@ -97,266 +1485,22 @@
             
             <!-- CAFEELE -->
             <div class="menu-items" id="cafea-items">
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Espresso">
-                    </div>
-                    <div class="item-info">
-                        <h3>Espresso</h3>
-                        <p>Cafea puternică și aromată, perfectă pentru dimineață</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">12 lei</span>
-                        <button class="add-to-cart-btn" data-id="1" data-name="Espresso" data-price="12" data-image="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Cappuccino">
-                    </div>
-                    <div class="item-info">
-                        <h3>Cappuccino</h3>
-                        <p>Espresso cu spumă de lapte cremoasă și topping de cacao</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">15 lei</span>
-                        <button class="add-to-cart-btn" data-id="2" data-name="Cappuccino" data-price="15" data-image="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Latte">
-                    </div>
-                    <div class="item-info">
-                        <h3>Latte</h3>
-                        <p>Cafea cu lapte și artă în spumă, echilibrul perfect</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">16 lei</span>
-                        <button class="add-to-cart-btn" data-id="3" data-name="Latte" data-price="16" data-image="https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Americano">
-                    </div>
-                    <div class="item-info">
-                        <h3>Americano</h3>
-                        <p>Espresso diluat cu apă fierbinte, aromă intensă</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">10 lei</span>
-                        <button class="add-to-cart-btn" data-id="4" data-name="Americano" data-price="10" data-image="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mocha">
-                    </div>
-                    <div class="item-info">
-                        <h3>Mocha</h3>
-                        <p>Cafea cu ciocolată și lapte, indulgență pură</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">18 lei</span>
-                        <button class="add-to-cart-btn" data-id="5" data-name="Mocha" data-price="18" data-image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1560769624-6b69c5d6a486?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Macchiato">
-                    </div>
-                    <div class="item-info">
-                        <h3>Macchiato</h3>
-                        <p>Espresso cu pic de spumă de lapte, aromă concentrată</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">14 lei</span>
-                        <button class="add-to-cart-btn" data-id="6" data-name="Macchiato" data-price="14" data-image="https://images.unsplash.com/photo-1560769624-6b69c5d6a486?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Flat White">
-                    </div>
-                    <div class="item-info">
-                        <h3>Flat White</h3>
-                        <p>Dublu espresso cu micro-spumă de lapte, cremos și intens</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">17 lei</span>
-                        <button class="add-to-cart-btn" data-id="7" data-name="Flat White" data-price="17" data-image="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Cafea Turcească">
-                    </div>
-                    <div class="item-info">
-                        <h3>Cafea Turcească</h3>
-                        <p>Cafea tradițională preparată în cezve, cu sediment</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">13 lei</span>
-                        <button class="add-to-cart-btn" data-id="8" data-name="Cafea Turcească" data-price="13" data-image="https://images.unsplash.com/photo-1517701604599-bb29b565090c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Irish Coffee">
-                    </div>
-                    <div class="item-info">
-                        <h3>Irish Coffee</h3>
-                        <p>Cafea cu whiskey irlandez și frișcă, pentru momente speciale</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">25 lei</span>
-                        <button class="add-to-cart-btn" data-id="9" data-name="Irish Coffee" data-price="25" data-image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Cafea cu Gheață">
-                    </div>
-                    <div class="item-info">
-                        <h3>Cafea cu Gheață</h3>
-                        <p>Espresso răcit cu gheață, perfectă pentru zilele calde</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">14 lei</span>
-                        <button class="add-to-cart-btn" data-id="10" data-name="Cafea cu Gheață" data-price="14" data-image="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
+                <!-- Produsele vor fi adăugate din JavaScript -->
             </div>
 
             <!-- CEAIURI -->
             <div class="menu-items hidden" id="ceai-items">
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Ceai Negru">
-                    </div>
-                    <div class="item-info">
-                        <h3>Ceai Negru English Breakfast</h3>
-                        <p>Aromă intensă și bogată, perfect pentru dimineață</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">8 lei</span>
-                        <button class="add-to-cart-btn" data-id="11" data-name="Ceai Negru English Breakfast" data-price="8" data-image="https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Ceai Verde">
-                    </div>
-                    <div class="item-info">
-                        <h3>Ceai Verde Sencha</h3>
-                        <p>Proaspăt și revigorant, cu note vegetale delicate</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">9 lei</span>
-                        <button class="add-to-cart-btn" data-id="12" data-name="Ceai Verde Sencha" data-price="9" data-image="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1597481499750-3e11b15f1d16?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Ceai de Fructe">
-                    </div>
-                    <div class="item-info">
-                        <h3>Ceai de Fructe de Pădure</h3>
-                        <p>Bogat în arome de fructe proaspete și sălbatice</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">10 lei</span>
-                        <button class="add-to-cart-btn" data-id="13" data-name="Ceai de Fructe de Pădure" data-price="10" data-image="https://images.unsplash.com/photo-1597481499750-3e11b15f1d16?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Adaugă restul de 7 ceaiuri cu structura similară -->
-                <!-- ... -->
-
+                <!-- Produsele vor fi adăugate din JavaScript -->
             </div>
 
             <!-- RĂCORITOARE -->
             <div class="menu-items hidden" id="racoritoare-items">
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1523371683702-309cffa2f6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Limonadă">
-                    </div>
-                    <div class="item-info">
-                        <h3>Limonadă Proaspătă cu Lămâie</h3>
-                        <p>Lămâie proaspătă și mentă, răcoritoare și revigorantă</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">12 lei</span>
-                        <button class="add-to-cart-btn" data-id="21" data-name="Limonadă Proaspătă cu Lămâie" data-price="12" data-image="https://images.unsplash.com/photo-1523371683702-309cffa2f6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Adaugă restul de 9 răcoritoare cu structura similară -->
-                <!-- ... -->
-
+                <!-- Produsele vor fi adăugate din JavaScript -->
             </div>
 
             <!-- GUSTĂRI -->
             <div class="menu-items hidden" id="gustari-items">
-                <div class="menu-item floating-anim">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Croissant">
-                    </div>
-                    <div class="item-info">
-                        <h3>Croissant cu Unt</h3>
-                        <p>Proaspăt și crocant, cu unt de calitate superioară</p>
-                    </div>
-                    <div class="item-actions">
-                        <span class="price">8 lei</span>
-                        <button class="add-to-cart-btn" data-id="31" data-name="Croissant cu Unt" data-price="8" data-image="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
-                            + Adaugă
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Adaugă restul de 9 gustări cu structura similară -->
-                <!-- ... -->
-
+                <!-- Produsele vor fi adăugate din JavaScript -->
             </div>
         </div>
     </section>
@@ -366,16 +1510,16 @@
         <div class="container">
             <h2 class="section-title">Galerie Foto</h2>
             <div class="gallery-grid">
-                <div class="gallery-item floating-anim-slow">
+                <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Interior cafenea">
                 </div>
-                <div class="gallery-item floating-anim-slow">
+                <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Barista la lucru">
                 </div>
-                <div class="gallery-item floating-anim-slow">
+                <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Atmosfera cafenelei">
                 </div>
-                <div class="gallery-item floating-anim-slow">
+                <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1572119865084-43c285814d63?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Prepararea cafelei">
                 </div>
             </div>
@@ -388,32 +1532,32 @@
             <h2 class="section-title">Despre La Catalin</h2>
             
             <div class="about-text">
-                <p>Bun venit la La Catalin, cafeneaua unde aroma cafelei se îmbină cu căldura ospitalității moldovenești.</p>
+                <p>Bun venit la La Catalin, cafeneaua unde aroma cafelei se îmbină cu căldura ospitalității moldovenești. Aici fiecare ceașcă de cafea este o poveste, iar fiecare client este o parte din familia noastră.</p>
             </div>
             
             <div class="features-grid">
-                <div class="feature floating-anim">
+                <div class="feature">
                     <div class="feature-icon">☕</div>
                     <h3>Cafea Proaspătă</h3>
-                    <p>Boabe de cafea selecționate și proaspăt prăjite zilnic</p>
+                    <p>Boabe de cafea selecționate și proaspăt prăjite zilnic pentru cel mai bun gust</p>
                 </div>
                 
-                <div class="feature floating-anim">
+                <div class="feature">
                     <div class="feature-icon">🏠</div>
                     <h3>Atmosferă Casnică</h3>
-                    <p>Un ambient cald și primitor, perfect pentru relaxare</p>
+                    <p>Un ambient cald și primitor, perfect pentru relaxare sau întâlniri de afaceri</p>
                 </div>
                 
-                <div class="feature floating-anim">
+                <div class="feature">
                     <div class="feature-icon">📍</div>
                     <h3>Locație Centrală</h3>
-                    <p>În inima orașului, ușor accesibilă</p>
+                    <p>În inima orașului, ușor accesibilă din orice punct al Chișinăului</p>
                 </div>
                 
-                <div class="feature floating-anim">
+                <div class="feature">
                     <div class="feature-icon">👨‍🍳</div>
                     <h3>Baristi Experimentați</h3>
-                    <p>Echipa noastră creează artă în fiecare ceașcă</p>
+                    <p>Echipa noastră de specialiști creează artă în fiecare ceașcă de cafea</p>
                 </div>
             </div>
         </div>
@@ -426,93 +1570,702 @@
             
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="contact-card floating-anim">
-                        <div class="contact-header">
-                            <div class="contact-icon">📍</div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
                             <h3>Adresă</h3>
-                        </div>
-                        <div class="contact-details">
-                            <p>Strada Mihai Eminescu nr. 15</p>
-                            <p>Chișinău, Moldova</p>
+                            <p>Strada Mihai Eminescu nr. 15<br>Chișinău, Moldova</p>
                         </div>
                     </div>
                     
-                    <div class="contact-card floating-anim">
-                        <div class="contact-header">
-                            <div class="contact-icon">📞</div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
                             <h3>Telefon</h3>
-                        </div>
-                        <div class="contact-details">
-                            <p>+373 79 123 456</p>
-                            <p>+373 22 123 456</p>
+                            <p>+373 79 123 456<br>+373 22 123 456</p>
                         </div>
                     </div>
                     
-                    <div class="contact-card floating-anim">
-                        <div class="contact-header">
-                            <div class="contact-icon">🕒</div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
                             <h3>Program</h3>
-                        </div>
-                        <div class="contact-details">
-                            <p><strong>Luni - Vineri:</strong> 7:00 - 22:00</p>
-                            <p><strong>Sâmbătă - Duminică:</strong> 8:00 - 23:00</p>
+                            <p>Luni - Vineri: 7:00 - 22:00<br>Sâmbătă - Duminică: 8:00 - 23:00</p>
                         </div>
                     </div>
                     
-                    <div class="contact-card floating-anim">
-                        <div class="contact-header">
-                            <div class="contact-icon">📧</div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
                             <h3>Email</h3>
-                        </div>
-                        <div class="contact-details">
-                            <p>contact@lacatalin.md</p>
-                            <p>rezervari@lacatalin.md</p>
+                            <p>contact@lacatalin.md<br>rezervari@lacatalin.md</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="contact-form-container floating-anim">
-                    <div class="form-header">
-                        <h3>✉️ Trimite-ne un mesaj</h3>
-                        <p>Te așteptăm să ne contactezi!</p>
-                    </div>
-                    <form id="messageForm" class="contact-form">
+                <div class="contact-form">
+                    <h3>Trimite-ne un mesaj</h3>
+                    <form id="messageForm">
                         <div class="form-group">
-                            <label for="name">Numele tău complet</label>
-                            <input type="text" id="name" placeholder="Introdu numele tău" required class="form-input">
+                            <input type="text" name="name" placeholder="Numele tău" required>
                         </div>
-                        
                         <div class="form-group">
-                            <label for="email">Adresa ta de email</label>
-                            <input type="email" id="email" placeholder="exemplu@email.com" required class="form-input">
+                            <input type="email" name="email" placeholder="Email" required>
                         </div>
-                        
                         <div class="form-group">
-                            <label for="message">Mesajul tău</label>
-                            <textarea id="message" placeholder="Scrie mesajul tău aici..." rows="5" required class="form-textarea"></textarea>
+                            <textarea name="message" placeholder="Mesajul tău..." rows="5" required></textarea>
                         </div>
-                        
-                        <button type="submit" class="submit-btn pulse-anim">
-                            <span class="btn-icon">📨</span>
-                            Trimite Mesaj
-                        </button>
+                        <button type="submit" class="submit-btn">Trimite Mesaj</button>
                     </form>
-                </div>
-            </div>
-            
-            <div class="location-section">
-                <h3>📍 Locația noastră</h3>
-                <div class="map-placeholder">
-                    <div class="map-content">
-                        <div class="map-icon">🗺️</div>
-                        <p>Strada Mihai Eminescu nr. 15, Chișinău</p>
-                        <small>Lângă Parcul Central • Acces ușor • Parcare disponibilă</small>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>La Catalin</h3>
+                <p>Cafenea Moldovenească Autentică</p>
+                <p>Aroma cafelei proaspete, atmosfera călduroasă și tradiția moldovenească</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Program</h3>
+                <p>Luni - Vineri: 7:00 - 22:00</p>
+                <p>Sâmbătă - Duminică: 8:00 - 23:00</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Social Media</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 La Catalin. Toate drepturile rezervate.</p>
+        </div>
+    </footer>
+
+    <script>
+        // DATELE PENTRU MENIU
+        const menuData = {
+            cafea: [
+                {
+                    id: 1,
+                    name: "Espresso",
+                    description: "Cafea puternică și aromată, preparată din boabe de cafea proaspăt măcinate",
+                    price: 12,
+                    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                },
+                {
+                    id: 2,
+                    name: "Cappuccino",
+                    description: "Espresso cu spumă de lapte cremoasă și pudră de cacao",
+                    price: 15,
+                    image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                },
+                {
+                    id: 3,
+                    name: "Latte",
+                    description: "Cafea cu lapte și artă în spumă, perfectă pentru dimineața",
+                    price: 16,
+                    image: "https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                },
+                {
+                    id: 4,
+                    name: "Americano",
+                    description: "Espresso diluat cu apă fierbinte pentru un gust mai ușor",
+                    price: 10,
+                    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                },
+                {
+                    id: 5,
+                    name: "Mocha",
+                    description: "Cafea cu ciocolată și lapte, o combinație delicioasă",
+                    price: 18,
+                    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                },
+                {
+                    id: 6,
+                    name: "Macchiato",
+                    description: "Espresso cu un pic de spumă de lapte pentru echilibru perfect",
+                    price: 14,
+                    image: "https://images.unsplash.com/photo-1560769624-6b69c5d6a486?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                }
+            ],
+            ceai: [
+                {
+                    id: 7,
+                    name: "Ceai Negru",
+                    description: "Aromă intensă și bogată, perfect pentru începutul zilei",
+                    price: 8,
+                    image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                },
+                {
+                    id: 8,
+                    name: "Ceai Verde",
+                    description: "Proaspăt și revigorant, cu beneficii pentru sănătate",
+                    price: 9,
+                    image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                },
+                {
+                    id: 9,
+                    name: "Ceai de Fructe",
+                    description: "Bogat în arome de fructe proaspete, fără cofeină",
+                    price: 10,
+                    image: "https://images.unsplash.com/photo-1597481499750-3e11b15f1d16?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                }
+            ],
+            racoritoare: [
+                {
+                    id: 10,
+                    name: "Limonadă Proaspătă",
+                    description: "Lămâie proaspătă și mentă, răcoritoare și revigorantă",
+                    price: 12,
+                    image: "https://images.unsplash.com/photo-1523371683702-309cffa2f6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                },
+                {
+                    id: 11,
+                    name: "Suc Natural",
+                    description: "Din fructe proaspete, fără adaos de zahăr",
+                    price: 10,
+                    image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                },
+                {
+                    id: 12,
+                    name: "Apă Minerală",
+                    description: "Cu sau fără gaz, la alegere",
+                    price: 5,
+                    image: "https://images.unsplash.com/photo-1548839149-851a64d0da60?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                }
+            ],
+            gustari: [
+                {
+                    id: 13,
+                    name: "Croissant",
+                    description: "Proaspăt și crocant, cu unt de cea mai bună calitate",
+                    price: 8,
+                    image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                },
+                {
+                    id: 14,
+                    name: "Tort Ciocolată",
+                    description: "Cu ciocolată belgiană și cremă de vanilie",
+                    price: 15,
+                    image: "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                },
+                {
+                    id: 15,
+                    name: "Muffin",
+                    description: "Cu afine sau ciocolată, proaspăt coapt",
+                    price: 10,
+                    image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                }
+            ]
+        };
+
+        // VARIABILE GLOBALE
+        let cart = [];
+        let cartCount = 0;
+        let cartTotal = 0;
+
+        // INITIALIZARE APLICAȚIE
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMenu();
+            setupEventListeners();
+            updateCartDisplay();
+            loadCartFromStorage();
+            initializeScrollAnimations();
+            createSparkles();
+        });
+
+        // CREARE SCINTEIE
+        function createSparkles() {
+            const sparkleContainer = document.createElement('div');
+            sparkleContainer.className = 'sparkle-container';
+            document.body.appendChild(sparkleContainer);
+
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.left = Math.random() * 100 + 'vw';
+                    sparkle.style.top = Math.random() * 100 + 'vh';
+                    sparkle.style.animationDelay = Math.random() * 2 + 's';
+                    sparkleContainer.appendChild(sparkle);
+
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 2000);
+                }
+            }, 500);
+        }
+
+        // CREARE EFECT CONFETTI
+        function createConfetti() {
+            const colors = ['#FFD700', '#FFECB3', '#5D4037', '#8D6E63', '#D7CCC8'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = `confetti ${Math.random() * 3 + 2}s ease-in forwards`;
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // INITIALIZARE MENIU
+        function initializeMenu() {
+            // Populare categorii de meniu
+            for (const category in menuData) {
+                const container = document.getElementById(`${category}-items`);
+                if (container) {
+                    container.innerHTML = '';
+                    
+                    menuData[category].forEach(item => {
+                        const menuItem = createMenuItem(item);
+                        container.appendChild(menuItem);
+                    });
+                }
+            }
+        }
+
+        // CREARE ELEMENT MENIU
+        function createMenuItem(item) {
+            const menuItem = document.createElement('div');
+            menuItem.className = 'menu-item';
+            menuItem.innerHTML = `
+                <div class="item-image">
+                    <img src="${item.image}" alt="${item.name}" loading="lazy">
+                </div>
+                <div class="item-info">
+                    <h3>${item.name}</h3>
+                    <p>${item.description}</p>
+                    <div class="item-footer">
+                        <span class="price">${item.price} lei</span>
+                        <button class="add-to-cart" data-id="${item.id}">
+                            <i class="fas fa-cart-plus"></i> Adaugă
+                        </button>
+                    </div>
+                </div>
+            `;
+            return menuItem;
+        }
+
+        // SETARE EVENT LISTENERS
+        function setupEventListeners() {
+            // Butoane categorii meniu
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const menuSections = document.querySelectorAll('.menu-items');
+            
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    switchCategory(this, categoryBtns, menuSections);
+                });
+            });
+
+            // Adăugare în coș
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-to-cart') || e.target.closest('.add-to-cart')) {
+                    const button = e.target.classList.contains('add-to-cart') ? e.target : e.target.closest('.add-to-cart');
+                    const itemId = parseInt(button.getAttribute('data-id'));
+                    addToCart(itemId);
+                }
+                
+                // Butoane cantitate coș
+                if (e.target.classList.contains('quantity-btn') || e.target.closest('.quantity-btn')) {
+                    const button = e.target.classList.contains('quantity-btn') ? e.target : e.target.closest('.quantity-btn');
+                    const itemId = parseInt(button.closest('.cart-item').getAttribute('data-id'));
+                    
+                    if (button.querySelector('.fa-plus') || button.textContent === '+') {
+                        updateQuantity(itemId, 1);
+                    } else {
+                        updateQuantity(itemId, -1);
+                    }
+                }
+                
+                // Ștergere din coș
+                if (e.target.classList.contains('remove-item') || e.target.closest('.remove-item')) {
+                    const button = e.target.classList.contains('remove-item') ? e.target : e.target.closest('.remove-item');
+                    const itemId = parseInt(button.closest('.cart-item').getAttribute('data-id'));
+                    removeFromCart(itemId);
+                }
+            });
+            
+            // Deschidere/închidere coș
+            document.getElementById('cartIcon').addEventListener('click', openCart);
+            document.getElementById('closeCart').addEventListener('click', closeCart);
+            
+            // Finalizare comandă
+            document.getElementById('checkoutBtn').addEventListener('click', checkout);
+            
+            // Formular de contact
+            const contactForm = document.getElementById('messageForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    handleContactForm(this);
+                });
+            }
+
+            // Închidere coș la click în afara
+            document.addEventListener('click', function(e) {
+                const cartSidebar = document.getElementById('cartSidebar');
+                const cartIcon = document.getElementById('cartIcon');
+                
+                if (cartSidebar.classList.contains('open') && 
+                    !cartSidebar.contains(e.target) && 
+                    !cartIcon.contains(e.target)) {
+                    closeCart();
+                }
+            });
+
+            // Navigare smooth
+            setupSmoothScrolling();
+
+            // Efect ripple pentru butoane
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('btn') || e.target.closest('.btn')) {
+                    const button = e.target.classList.contains('btn') ? e.target : e.target.closest('.btn');
+                    createRippleEffect(button, e);
+                }
+            });
+        }
+
+        // EFECT RIPPLE PENTRU BUTOANE
+        function createRippleEffect(button, event) {
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.pointerEvents = 'none';
+            
+            button.style.position = 'relative';
+            button.style.overflow = 'hidden';
+            button.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        // SCHIMBARE CATEGORIE MENIU
+        function switchCategory(clickedBtn, allBtns, allSections) {
+            // Elimină clasa active de la toate butoanele
+            allBtns.forEach(b => b.classList.remove('active'));
+            // Adaugă clasa active la butonul apăsat
+            clickedBtn.classList.add('active');
+            
+            // Ascunde toate secțiunile de meniu
+            allSections.forEach(section => section.classList.add('hidden'));
+            
+            // Afișează categoria selectată
+            const category = clickedBtn.getAttribute('data-category');
+            const targetSection = document.getElementById(`${category}-items`);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                
+                // Animație pentru elementele noi afișate
+                animateMenuItems(targetSection);
+            }
+        }
+
+        // ANIMARE ELEMENTE MENIU
+        function animateMenuItems(container) {
+            const items = container.querySelectorAll('.menu-item');
+            items.forEach((item, index) => {
+                item.style.animation = 'none';
+                setTimeout(() => {
+                    item.style.animation = `fadeInUp 0.8s ease-out ${index * 0.1}s forwards`;
+                }, 50);
+            });
+        }
+
+        // SETARE NAVIGARE SMOOTH
+        function setupSmoothScrolling() {
+            const navLinks = document.querySelectorAll('.nav-link, .btn[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            const headerHeight = document.querySelector('.site-header').offsetHeight;
+                            const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                            
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        }
+
+        // INITIALIZARE ANIMAȚII LA SCROLL
+        function initializeScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, observerOptions);
+
+            // Observă elementele cu animații
+            const animatedElements = document.querySelectorAll('.menu-item, .feature, .contact-item, .gallery-item');
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // FUNCȚII COȘ DE CUMPĂRĂTURI
+        function addToCart(itemId) {
+            // Găsește produsul în toate categoriile
+            let product = null;
+            for (const category in menuData) {
+                product = menuData[category].find(item => item.id === itemId);
+                if (product) break;
+            }
+            
+            if (!product) return;
+            
+            // Verifică dacă produsul există deja în coș
+            const existingItem = cart.find(item => item.id === itemId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            updateCartDisplay();
+            showNotification(`${product.name} a fost adăugat în coș!`);
+            animateCartIcon();
+            saveCartToStorage();
+        }
+
+        function updateQuantity(itemId, change) {
+            const item = cart.find(item => item.id === itemId);
+            if (!item) return;
+            
+            item.quantity += change;
+            
+            if (item.quantity <= 0) {
+                removeFromCart(itemId);
+            } else {
+                updateCartDisplay();
+                saveCartToStorage();
+            }
+        }
+
+        function removeFromCart(itemId) {
+            const itemIndex = cart.findIndex(item => item.id === itemId);
+            if (itemIndex > -1) {
+                cart.splice(itemIndex, 1);
+                updateCartDisplay();
+                showNotification('Produsul a fost eliminat din coș!');
+                saveCartToStorage();
+            }
+        }
+
+        function updateCartDisplay() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartCountElement = document.querySelector('.cart-count');
+            const subtotalElement = document.getElementById('subtotal');
+            const taxElement = document.getElementById('tax');
+            const totalElement = document.getElementById('total');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            
+            // Actualizare număr produse
+            cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountElement.textContent = cartCount;
+            
+            // Actualizare conținut coș
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-coffee"></i>
+                        <p>Coșul tău este gol</p>
+                        <p>Adaugă produse din meniu</p>
+                    </div>
+                `;
+                checkoutBtn.disabled = true;
+            } else {
+                cartItemsContainer.innerHTML = '';
+                
+                cart.forEach(item => {
+                    const cartItem = createCartItem(item);
+                    cartItemsContainer.appendChild(cartItem);
+                });
+                
+                checkoutBtn.disabled = false;
+            }
+            
+            // Calcul totaluri
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const tax = subtotal * 0.1; // TVA 10%
+            const total = subtotal + tax;
+            
+            cartTotal = total;
+            
+            subtotalElement.textContent = `${subtotal.toFixed(2)} lei`;
+            taxElement.textContent = `${tax.toFixed(2)} lei`;
+            totalElement.textContent = `${total.toFixed(2)} lei`;
+        }
+
+        // CREARE ELEMENT COȘ
+        function createCartItem(item) {
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+            cartItem.setAttribute('data-id', item.id);
+            cartItem.innerHTML = `
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <p>${item.price} lei</p>
+                </div>
+                <div class="cart-item-controls">
+                    <button class="quantity-btn"><i class="fas fa-minus"></i></button>
+                    <span>${item.quantity}</span>
+                    <button class="quantity-btn"><i class="fas fa-plus"></i></button>
+                    <button class="remove-item"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
+            return cartItem;
+        }
+
+        function openCart() {
+            document.getElementById('cartSidebar').classList.add('open');
+        }
+
+        function closeCart() {
+            document.getElementById('cartSidebar').classList.remove('open');
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+            
+            showNotification(`Comanda a fost plasată! Total: ${cartTotal.toFixed(2)} lei`, true);
+            createConfetti();
+            
+            // Simulare procesare plată
+            simulatePaymentProcessing();
+        }
+
+        // SIMULARE PROCESARE PLATĂ
+        function simulatePaymentProcessing() {
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            const originalText = checkoutBtn.textContent;
+            
+            checkoutBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Se procesează...';
+            checkoutBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Resetare coș după finalizare
+                cart = [];
+                updateCartDisplay();
+                closeCart();
+                saveCartToStorage();
+                
+                checkoutBtn.innerHTML = originalText;
+                checkoutBtn.disabled = false;
+            }, 2000);
+        }
+
+        // ANIMAȚIE ICONIȚĂ COȘ
+        function animateCartIcon() {
+            const cartIcon = document.getElementById('cartIcon');
+            cartIcon.style.transform = 'scale(1.2)';
+            
+            setTimeout(() => {
+                cartIcon.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        // NOTIFICĂRI
+        function showNotification(message, isError = false) {
+            const notification = document.getElementById('notification');
+            const icon = notification.querySelector('i');
+            const text = notification.querySelector('span');
+            
+            text.textContent = message;
+            
+            if (isError) {
+                notification.classList.add('error');
+                icon.className = 'fas fa-exclamation-circle';
+            } else {
+                notification.classList.remove('error');
+                icon.className = 'fas fa-check-circle';
+            }
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // GESTIONARE FORMULAR CONTACT
+        function handleContactForm(form) {
+            const formData = new FormData(form);
+            const name = formData.get('name') || 'Nume';
+            
+            showNotification(`Mulțumim pentru mesaj, ${name}! Te vom contacta în curând.`);
+            form.reset();
+        }
+
+        // MANAGEMENT STOCARE LOCALĂ
+        function saveCartToStorage() {
+            localStorage.setItem('laCatalinCart', JSON.stringify(cart));
+        }
+
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('laCatalinCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartDisplay();
+            }
+        }
+
+        console.log('La Catalin - Cafenea Moldovenească loaded successfully!');
+    </script>
 </body>
 </html>
