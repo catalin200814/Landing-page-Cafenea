@@ -1,25 +1,30 @@
-I)🏪 Despre Cafenea
-"La Catalin" este o cafenea moldovenească autentică care aduce în prim-plan tradiția și calitatea. Aici, fiecare ceașcă de cafea spune o poveste - povestea boabelor de cafea proaspet prăjite, a baristiștilor pasionați și a atmosferei calde și primitoare specifică ospitalității moldovenești.Misiunea noastră este să creăm un spațiu unde clienții se simt ca acasă, unde aroma cafelei proaspete se îmbină perfect cu bunătățile tradiționale și unde fiecare vizită devine o experiență memorabilă.
+# ☕ Cafeneaua "La Catalin" - Landing Page
 
-II)👨‍🎓 Despre Creator
-Salcoci Catalin - Student la Colegiul UTM, grupa DAW 241
+## 🏪 Despre Cafenea
+
+**"La Catalin"** este o cafenea moldovenească autentică care aduce în prim-plan tradiția și calitatea. Aici, fiecare ceașcă de cafea spune o poveste - povestea boabelor de cafea proaspăt prăjite, a baristiștilor pasionați și a atmosferei calde și primitoare specifică ospitalității moldovenești.
+
+**Misiunea noastră** este să creăm un spațiu unde clienții se simt ca acasă, unde aroma cafelei proaspete se îmbină perfect cu bunătățile tradiționale și unde fiecare vizită devine o experiență memorabilă.
+
+## 👨‍🎓 Despre Creator
+
+**Salcoci Catalin** - Student la Colegiul UTM, grupa DAW 241
+
 Ca student în Dezvoltarea Aplicațiilor Web, am creat acest site ca proiect personal care să îmbine pasiunea pentru cafea cu abilitățile tehnice dobândite în timpul studiilor.
 
-Scopul acestui proiect a fost de a dezvolta o experiență digitală completă care să:
+### Scopul Proiectului
 
-1.Prezinte în mod atrăgător cafeneaua
+Acest proiect a fost dezvoltat pentru a crea o experiență digitală completă care să:
 
-2.Oferă o interfață ușor de utilizat pentru clienți
+- 🎨 **Prezinte în mod atrăgător cafeneaua**
+- 🖱️ **Oferă o interfață ușor de utilizat pentru clienți**
+- 🛒 **Include un sistem funcțional de coș de cumpărături**
+- 📱 **Fie optimizat pentru toate dispozitivele**
+- ✨ **Aibă animații moderne și atrăgătoare**
 
-3.Include un sistem funcțional de coș de cumpărături
+## 🌐 Accesare Pagină
 
-4.Să fie optimizat pentru toate dispozitivele
+**Calea de acces:** https://catalin200814.github.io/Landing-page-Cafenea/
+---
 
-5.Să aibă animații moderne și atrăgătoare
-
-
-III) Calea de acces la pagina: https://catalin200814.github.io/Landing-page-Cafenea/
-
-
-
-!!!!!!!!! Proiect realizat cu pasiune pentru cafea și tehnologie ☕💻
+> **Proiect realizat cu pasiune pentru cafea și tehnologie** ☕💻
