@@ -3,101 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Cătălin - Cafenea</title>
+    <title>Cafeneaua lui Cătălin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>LA CĂTĂLIN</h1>
-        <p>Cafenea Moldovenească</p>
+        <nav>
+            <div class="logo">☕ Cafeneaua lui Cătălin</div>
+            <div class="nav-links">
+                <a href="#home">Acasă</a>
+                <a href="#products">Produse</a>
+                <a href="#about">Despre</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
     </header>
 
-    <nav>
-        <a href="#home">Acasă</a>
-        <a href="#menu">Meniu</a>
-        <a href="#about">Despre</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h2>Bine ați venit!</h2>
-            <p>Cea mai bună cafea din Chișinău</p>
-            <div>
-                <a href="#menu" class="btn">Meniu</a>
-                <a href="#contact" class="btn btn-outline">Contact</a>
-            </div>
-        </div>
-    </section>
-
-    <div class="cart-icon" id="cartIcon">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
-    </div>
-
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3>Coșul meu</h3>
-            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="cart-items" id="cartItems"></div>
-        <div class="cart-footer">
-            <div class="cart-total">Total: <span id="cartTotal">0 lei</span></div>
-            <button class="checkout-btn" id="checkoutBtn" disabled>Plasează</button>
-        </div>
-    </div>
-
-    <div class="notification" id="notification">
-        <i class="fas fa-check-circle"></i>
-        <span id="notifMsg"></span>
-    </div>
-
-    <section id="menu" class="section">
-        <h2 class="section-title">Meniul nostru</h2>
-        <div class="menu-tabs">
-            <button class="tab-btn active" data-category="cafea">Cafea</button>
-            <button class="tab-btn" data-category="ceai">Ceai</button>
-            <button class="tab-btn" data-category="racoritoare">Răcoritoare</button>
-            <button class="tab-btn" data-category="gustari">Gustări</button>
-        </div>
-        <div id="menu-items" class="menu-items"></div>
-    </section>
-
-    <section id="about" class="section">
-        <h2 class="section-title">Despre noi</h2>
-        <div class="features">
-            <div class="feature"><i class="fas fa-coffee"></i><h3>Cafea proaspătă</h3><p>Prăjită zilnic</p></div>
-            <div class="feature"><i class="fas fa-heart"></i><h3>Atmosferă caldă</h3><p>Te simți acasă</p></div>
-            <div class="feature"><i class="fas fa-map-marker-alt"></i><h3>Central</h3><p>Inima orașului</p></div>
-            <div class="feature"><i class="fas fa-users"></i><h3>Baristi</h3><p>Experți în cafea</p></div>
-        </div>
-    </section>
-
-    <section id="contact" class="section">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="info-item"><i class="fas fa-map-marker-alt"></i><div><h4>Adresă</h4><p>Eminescu 15</p></div></div>
-                <div class="info-item"><i class="fas fa-phone"></i><div><h4>Telefon</h4><p>079 123 456</p></div></div>
-                <div class="info-item"><i class="fas fa-clock"></i><div><h4>Program</h4><p>8:00 - 22:00</p></div></div>
-                <div class="info-item"><i class="fas fa-envelope"></i><div><h4>Email</h4><p>contact@lacatalin.md</p></div></div>
-            </div>
-            <div class="contact-form">
-                <input id="name" placeholder="Nume">
-                <input id="email" placeholder="Email">
-                <textarea id="message" rows="3" placeholder="Mesaj"></textarea>
-                <button class="submit-btn" id="sendMessage">Trimite</button>
-            </div>
-        </div>
-    </section>
+    <main id="main-content"></main>
 
     <footer>
-        <p>© 2025 La Cătălin</p>
-        <div class="social">
+        <div class="social-links">
             <a href="#"><i class="fab fa-facebook"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
         </div>
+        <p>&copy; 2024 Cafeneaua lui Cătălin</p>
     </footer>
 
     <script src="script.js"></script>
